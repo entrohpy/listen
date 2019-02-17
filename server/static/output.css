@@ -5,7 +5,7 @@ h1 {
   width: 100vw;
   height: 10vh;
   align-items: center;
-  
+
 }
 
 .audio-container {
@@ -16,13 +16,19 @@ h1 {
 
 audio, source {
   width: 100vw;
+}
 
+#key-num {
+  color: white;
+  font-family: Tw Cen MT,Tw Cen MT,Tw Cen MT;
 }
 
 .keyword-container {
     display: flex;
+    font-family: Tw Cen MT,Tw Cen MT,Tw Cen MT;
     flex-direction: row;
     padding: 16px;
+    justify-content: center;
 }
 
 .keyword {
@@ -33,6 +39,8 @@ audio, source {
     text-align: center;
     text-decoration: none;
     border-radius: 8px;
+    margin: 5px;
+    font-family: Tw Cen MT,Tw Cen MT,Tw Cen MT;
 }
 
 .keyword:hover {

@@ -1,8 +1,10 @@
-runtime: python
+runtime: python27
 entrypoint: gunicorn -b :$PORT main:app
 
 runtime_config:
   python_version: 3
+
+threadsafe: true
 
 env_variables:
   CLOUD_STORAGE_BUCKET: anteat
