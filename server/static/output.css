@@ -1,33 +1,56 @@
 h1 {
+  color: white;
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 10vh;
   align-items: center;
-  background-color: lightblue;
+  
 }
 
 .audio-container {
   display: flex;
   justify-content: center;
-  background-color: black;
+
 }
 
 audio, source {
   width: 100vw;
-  background-color: black;
+
 }
+
+.keyword-container {
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+}
+
+.keyword {
+    background-color: #f4aa42; /* Orange */
+    border: none;
+    color: white;
+    padding: 16px 36px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.keyword:hover {
+    background: #f7b75d;
+}
+
+
 
 body {
   align-items: center;
   text-align: center;
-  background-color: lightblue
+  background: linear-gradient(to top, #86377b 20%, #27273c 80%);
 }
 
 p {
   align-items: center;
   text-align: center;
-  background-color: lightblue;
+
   font-size: 120%;
 }
 

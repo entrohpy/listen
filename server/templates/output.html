@@ -1,6 +1,4 @@
-<h1>Output</h1>
 
-<br />
 
 <html>
   <head>
@@ -11,22 +9,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
   </head>
   <body>
-    <div>
-      <wavesurfer
-              data-url="{{audio_url}}"
-              data-plugins="minimap"
-              data-minimap-height="30"
-              data-minimap-wave-color="#ddd"
-              data-minimap-progress-color="#999"
-              data-timeline-font-size="13px"
-              data-timeline-container="#waveform"
-              >
-      </wavesurfer>
-      <div id="waveform"/>
-    </div>
+      <h1 style="font-family:Tw Cen MT,Tw Cen MT,Tw Cen MT;font-size:72px; margin-top:36px;">
+          
+          <b>Listen to What Matters</b>
+          </h1>
+    <br />
+    <br />
     <div class="audio-container">
     <audio id="aud" controls><source src="{{audio_url}}" /></audio>
     </div>
+    <br />
+    <br />
     <form action="find" method="POST">
       <input type="text" name="keyword_input" id="keyword_input" />
       <input type="submit" value="Find" />
@@ -42,7 +35,8 @@
 
     {% endif %}
 
-<h1>Top Keywords</h1>
+<h1 style="font-family:Tw Cen MT,Tw Cen MT,Tw Cen MT;">
+    Suggested Keywords</h1>
     <div class="keyword-container">
 
     {% for keyword in keywords %}
