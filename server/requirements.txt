@@ -1,0 +1,5 @@
+Flask==1.0.2
+google-cloud-storage==1.13.2
+google-cloud-datastore==1.7.3
+grpcio==1.7.3
+google-cloud-speech==0.36.3
