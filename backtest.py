@@ -78,10 +78,10 @@ def returnKeyWords(text):
 
     num = 0
     temp = 0
-    keywords = [[],[],[],[],[]]
+    keywords = {}
     while num is not 5:
         if not entities[temp].name in keywords:
-            keywords[num] = [str(entities[temp].name), entities[temp].salience]
+            keywords[str(entities[temp].name)] = entities[temp].salience
             print('=' * 20)
             print(u'{:<16}: {}'.format('name', entities[temp].name))
             print(u'{:<16}: {}'.format('salience', entities[temp].salience))
@@ -95,13 +95,14 @@ def returnWordTimeAndKeyWord(audiofile):
     wordTimeMap, y, z = returnWordTimeMap(audiofile)
     y = returnKeyWords(y)
     z = returnKeyWords(z)
-    keyword = []
-    keyword.extend(y[:2])
-    keyword.extend(z[:2])
-    if y[3][1] > z[3][1]:
-        keyword.append(y[3])
-    else:
-        keyword.append(z[3])
-    for x in keyword:
-        print (x[0] + " " + str(x[1]))
+    keyword = {}
+    for key, value in y.items():
+        keyword[key] = value
+    for key, value in z.items():
+        if key in keyword:
+            if keyword[key] < value:
+                keyword[key] = value
+    for x, y in keyword.items():
+        print ("Word: " + x + " Saliance: " + str(y))
     return wordTimeMap, keyword
+returnWordTimeAndKeyWord("a")
