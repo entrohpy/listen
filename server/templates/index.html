@@ -1,23 +1,38 @@
-<link rel="stylesheet" type="text/css" href="homepage.css">
-<div class="header">
+
+
+
   <div class="intro">
-    <h1 style = "font-family:georgia,garamond,serif;font-size:32px;font-style:italic;">Google Cloud Platform - Speech to Text and NLP</h1>
+    <h1 style = "font-family:Tw Cen MT,Tw Cen MT,Tw Cen MT;font-size:98px;">Listen</h1>
   </div>
   <br>
+<div class="header">
+    <div class="waveWrapper waveAnimation">
+        <div class="waveWrapperInner bgTop">
+            <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgMiddle">
+            <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgBottom">
+            <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+        </div>
+    </div>
 
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="homepage.css">
     <title>GCP NLP</title>
   </head>
   <body>
+      <div class="form-parent">
     <form class="form" action="upload" method="POST" enctype="multipart/form-data">
-      <b>Upload File: </b><br> <input class="file" type="file" name="file"><br>
+      <b>Upload Audio: </b><br> <input class="file" type="file" name="file"><br>
       <input class="button" type="submit" name="submit" value="Submit">
     </form>
+    </div>
   </body>
 </html>
-<div class="ocean">
-  <div class="wave"></div>
-  <div class="wave"></div>
+
+
 </div>
 <div>
