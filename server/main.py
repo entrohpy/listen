@@ -1,30 +1,18 @@
-# Copyright 2017 Google Inc. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+import json
+from flask import Flask, redirect, render_template, request
 
-from datetime import datetime
 import logging
 import os
-
-from flask import Flask, redirect, render_template, request
 
 from google.cloud import datastore
 from google.cloud import storage
 from google.cloud import vision
 
+import backtest as nl
 
 CLOUD_STORAGE_BUCKET = os.environ.get('CLOUD_STORAGE_BUCKET')
-
+PREFIX = 'gs://anteat/'
+session = {}
 
 app = Flask(__name__)
 
@@ -40,12 +28,12 @@ def homepage():
     audio_entities = list(query.fetch())
 
     # Return a Jinja2 HTML template and pass in image_entities as a parameter.
-    return render_template('homepage.html', audio_entities=audio_entities)
-
+    return render_template('index.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     audio = request.files['file']
+    session['file'] = audio.filename
 
     # Create a Cloud Storage client.
     storage_client = storage.Client()
@@ -57,15 +45,11 @@ def upload():
     blob = bucket.blob(audio.filename)
     blob.upload_from_string(
             audio.read(), content_type=audio.content_type)
-
     # Make the blob publicly viewable.
     blob.make_public()
 
     # Create a Cloud Datastore client.
     datastore_client = datastore.Client()
-
-    # Fetch the current date / time.
-    current_datetime = datetime.now()
 
     # The kind for the new entity.
     kind = 'Audio clips'
@@ -81,14 +65,22 @@ def upload():
     entity = datastore.Entity(key)
     entity['blob_name'] = blob.name
     entity['audio_public_url'] = blob.public_url
-    entity['timestamp'] = current_datetime
-
+    session['public_url'] = blob.public_url
     # Save the new entity to Datastore.
     datastore_client.put(entity)
 
     # Redirect to the home page.
-    return redirect('/')
+    return redirect('/process')
 
+@app.route('/process')
+def process():
+    filename = PREFIX + session.get('file', None)
+    wordTimeMap, keywords = nl.returnWordTimeAndKeyWord(filename)
+
+    audio_url = session.get('public_url', None)
+    name = session.get('file', None)
+    # Return a Jinja2 HTML template and pass in image_entities as a parameter.
+    return render_template('/output.html', audio_url=audio_url, keywords=keywords, wordTimeMap=wordTimeMap, name=name)
 
 @app.errorhandler(500)
 def server_error(e):

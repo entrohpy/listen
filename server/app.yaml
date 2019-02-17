@@ -5,4 +5,4 @@ runtime_config:
   python_version: 3
 
 env_variables:
-  CLOUD_STORAGE_BUCKET: anteater
+  CLOUD_STORAGE_BUCKET: anteat

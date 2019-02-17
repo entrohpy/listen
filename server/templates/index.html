@@ -4,16 +4,13 @@
 <br>
 
 <html>
+  <head>
+    <title>GCP NLP</title>
+  </head>
   <body>
     <form action="upload" method="POST" enctype="multipart/form-data">
       Upload File: <input type="file" name="file"><br>
       <input type="submit" name="submit" value="Submit">
     </form>
-    <audio controls>
-    {% for audio_entity in audio_entities %}
-    <source src="{{audio_entity['audio_public_url']}}" type="audio/mpeg">
-      <p>{{audio_entity['blob_name']}} was uploaded {{audio_entity['timestamp']}}.</p>
-      {% endfor %}
-    </audio>
   </body>
 </html>
