@@ -1,19 +1,23 @@
-<h1>Google Cloud Platform - Speech to Text and NLP</h1>
+<link rel="stylesheet" type="text/css" href="homepage.css">
 
+<div class="header">
+  <h1 >Google Cloud Platform - Speech to Text and NLP</h1>
 
-<br>
+  <br>
 
-<html>
-  <body>
-    <form action="upload" method="POST" enctype="multipart/form-data">
-      Upload File: <input type="file" name="file"><br>
-      <input type="submit" name="submit" value="Submit">
-    </form>
-    <audio controls>
-    {% for audio_entity in audio_entities %}
-    <source src="{{audio_entity['audio_public_url']}}" type="audio/mpeg">
-      <p>{{audio_entity['blob_name']}} was uploaded {{audio_entity['timestamp']}}.</p>
-      {% endfor %}
-    </audio>
-  </body>
-</html>
+  <html>
+    <body>
+      <form class="form" action="upload" method="POST" enctype="multipart/form-data">
+        <text> Upload File: </text>
+        <input type="file" name="file"><br>
+        <input type="submit" name="submit" value="Submit">
+      </form>
+      <audio controls>
+      {% for audio_entity in audio_entities %}
+      <source src="{{audio_entity['audio_public_url']}}" type="audio/mpeg">
+        <p>{{audio_entity['blob_name']}} was uploaded {{audio_entity['timestamp']}}.</p>
+        {% endfor %}
+      </audio>
+    </body>
+  </html>
+</div>
