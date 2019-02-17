@@ -33,6 +33,7 @@
     </form>
     {% if timestamps %}
     <p> Found keyword!</p>
+    <div id="key-num"></div>
     <button onclick="moveBackward('{{keyword}}', {{timestamps}})">
       Backward
     </button>
@@ -68,6 +69,7 @@
         if (count == timestamps.length) {
           count = 0;
         }
+        updateCount(keyword, timestamps, count);
       }
 
       function moveBackward(keyword, timestamps) {
@@ -83,6 +85,14 @@
         if (count == -1) {
           count = timestamps.length - 1;
         }
+        updateCount(keyword, timestamps, count);
+      }
+
+      function updateCount(keyword, timestamps, count) {
+        var string = "";
+        string = string.concat(keyword, " ", (count+1).toString(), " of ", timestamps.length.toString())
+        console.log(string)
+        document.getElementById("key-num").innerHTML = string;
       }
 
       function updateSearchField(keyword) {

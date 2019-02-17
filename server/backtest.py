@@ -101,6 +101,6 @@ def returnWordTimeAndKeyWord(audiofile):
         if key in keyword:
             if keyword[key] < value:
                 keyword[key] = value
-    for x, y in keyword.items():
-        # print ("Word: " + x + " Saliance: " + str(y))
+    # for x, y in keyword.items():
+    #     print ("Word: " + x + " Saliance: " + str(y))
     return wordTimeMap, keyword
