@@ -6,7 +6,6 @@ import os
 
 from google.cloud import datastore
 from google.cloud import storage
-from google.cloud import vision
 
 import backtest as nl
 
@@ -76,11 +75,23 @@ def upload():
 def process():
     filename = PREFIX + session.get('file', None)
     wordTimeMap, keywords = nl.returnWordTimeAndKeyWord(filename)
+    session['wordTimeMap'] = wordTimeMap
+    session['keywords'] = keywords
 
     audio_url = session.get('public_url', None)
     name = session.get('file', None)
-    # Return a Jinja2 HTML template and pass in image_entities as a parameter.
+
     return render_template('/output.html', audio_url=audio_url, keywords=keywords, wordTimeMap=wordTimeMap, name=name)
+
+@app.route('/find', methods=['GET', 'POST'])
+def find():
+    wordTimeMap = session.get('wordTimeMap', None)
+    keyword = request.form['keyword_input']
+    timestamps = []
+    if keyword in wordTimeMap.keys():
+        timestamps = wordTimeMap[keyword]
+
+    return render_template('/output.html', timestamps=timestamps, name=session.get('file', None), keywords=session.get('keywords', None), audio_url=session.get('public_url', None), wordTimeMap=wordTimeMap)
 
 @app.errorhandler(500)
 def server_error(e):
