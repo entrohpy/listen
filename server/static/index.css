@@ -57,31 +57,41 @@
 // best seen at 1500px or less
 
 html, body {
-  font-family: Arial, Helvetica, sans-serif;
   height: 100%;
+  margin: 0;
+  padding: 24px;
 }
 
 body {
+    font-size: 24px;
+    font-family: Tw Cen MT,Tw Cen MT,Tw Cen MT;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   position: absolute;
   z-index: 999;
   background:linear-gradient(to top, #86377b 20%, #27273c 80%);
-  overflow: scroll;
+  overflow: hidden;
   color: white;
 
 }
 
 .info-container {
+    
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
+  margin-bottom: 36px;
 }
 
 .heading {
   color: white;
-  display: flex;
-  justify-content: center;
-  font-family: 'Calibri';
+}
+
+.subheading {
+    align-items: center;
 }
 
 @keyframes move_wave {
