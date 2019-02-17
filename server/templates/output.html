@@ -1,0 +1,52 @@
+<h1 style = "font-family:georgia,garamond,serif;font-size:32px;font-style:italic;">Output</h1>
+
+<br />
+
+<html>
+  <head>
+    <link rel="stylesheet" href="output.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no" />
+    <title>Output</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <wavesurfer
+              data-url="{{audio_url}}"
+              data-plugins="minimap"
+              data-minimap-height="30"
+              data-minimap-wave-color="#ddd"
+              data-minimap-progress-color="#999"
+              data-timeline-font-size="13px"
+              data-timeline-container="#waveform"
+              pp
+              >
+      </wavesurfer>
+      <div id="waveform"/>
+<!--      <audio id="aud" controls><source src="{gs://test75829/1min.flac}" /></audio> -->
+    </div>
+
+    <p>{% for keyword, _ in keywords.items() %}</p>
+    <p>{{ keyword }}</p>
+    <ul>
+      {% for timestamp in wordTimeMap[keyword] %}
+      <li onclick="setCurTime({ timestamp })">{{ timestamp }}</li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+
+
+  </body>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js">-->
+    <!--var wavesurfer = WaveSurfer.create({-->
+      <!--container: '#waveform',-->
+      <!--waveColor: 'violet',-->
+      <!--progressColor: 'purple'-->
+    <!--});-->
+
+    <!--var song = 'http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3'-->
+    <!--wavesurfer.load(song);-->
+    <!--wavesurfer.on('ready', function () {wavesurfer.play();})-->
+  <!--</script>-->
+</html>
