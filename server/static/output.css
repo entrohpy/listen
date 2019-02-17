@@ -7,6 +7,17 @@ h1 {
   background-color: lightblue;
 }
 
+.audio-container {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+}
+
+audio, source {
+  width: 100vw;
+  background-color: black;
+}
+
 body {
   align-items: center;
   text-align: center;

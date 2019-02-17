@@ -33,8 +33,7 @@ def returnWordTimeMap(audiofile):
         encoding=enums.RecognitionConfig.AudioEncoding.FLAC,
         sample_rate_hertz=44100,
         language_code='en-US',
-        enable_word_time_offsets=True,
-        enable_automatic_punctuation=True)
+        enable_word_time_offsets=True)
 
     operation = client.long_running_recognize(config, audio)
     print('Waiting for operation to complete...')
@@ -57,8 +56,8 @@ def returnWordTimeMap(audiofile):
 
     for word in wordTimeMap:
         value = wordTimeMap[word]
-        print ("Word: " + str(word) + "\t\tStart Time: " + str(value))
-    print (totaltext)
+        # print ("Word: " + str(word) + "\t\tStart Time: " + str(value))
+    # print (totaltext)
     return wordTimeMap, totaltext, totaltext2
 
 # Uses Google Cloud NLP to extract 5 most important words in speech
@@ -82,9 +81,9 @@ def returnKeyWords(text):
         if " " not in str(entities[temp].name):
             if not entities[temp].name in keywords:
                 keywords[str(entities[temp].name)] = entities[temp].salience
-                print('=' * 20)
-                print(u'{:<16}: {}'.format('name', entities[temp].name))
-                print(u'{:<16}: {}'.format('salience', entities[temp].salience))
+                # print('=' * 20)
+                # print(u'{:<16}: {}'.format('name', entities[temp].name))
+                # print(u'{:<16}: {}'.format('salience', entities[temp].salience))
                 num += 1
         temp += 1
     return keywords
@@ -103,5 +102,5 @@ def returnWordTimeAndKeyWord(audiofile):
             if keyword[key] < value:
                 keyword[key] = value
     for x, y in keyword.items():
-        print ("Word: " + x + " Saliance: " + str(y))
+        # print ("Word: " + x + " Saliance: " + str(y))
     return wordTimeMap, keyword

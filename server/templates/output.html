@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="../static/output.css">
-    <title>Output</title>
+    <title>Listen | Keywords</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
   </head>
   <body>
@@ -20,17 +20,19 @@
               data-minimap-progress-color="#999"
               data-timeline-font-size="13px"
               data-timeline-container="#waveform"
-              pp
               >
       </wavesurfer>
       <div id="waveform"/>
     </div>
-    <!-- <audio id="aud" controls><source src="{{audio_url}}" /></audio> -->
+    <div class="audio-container">
+    <audio id="aud" controls><source src="{{audio_url}}" /></audio>
+    </div>
     <form action="find" method="POST">
-      <input type="text" name="keyword_input" />
+      <input type="text" name="keyword_input" id="keyword_input" />
       <input type="submit" value="Find" />
     </form>
     {% if timestamps %}
+    <p> Found keyword!</p>
     <button onclick="moveBackward('{{keyword}}', {{timestamps}})">
       Backward
     </button>
@@ -40,9 +42,11 @@
 
     {% endif %}
 
+<h1>Top Keywords</h1>
     <div class="keyword-container">
+
     {% for keyword in keywords %}
-      <div class="keyword"> {{ keyword }} </div>
+      <div class="keyword" onclick="updateSearchField('{{ keyword }}')"> {{ keyword }} </div>
     {% endfor %}
     </div>
 
@@ -79,6 +83,11 @@
         if (count == -1) {
           count = timestamps.length - 1;
         }
+      }
+
+      function updateSearchField(keyword) {
+        var input_field = document.getElementById("keyword_input");
+        input_field.value=keyword;
       }
     </script>
   </body>

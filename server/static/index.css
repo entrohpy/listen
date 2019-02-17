@@ -62,11 +62,26 @@ html, body {
 }
 
 body {
+  display: flex;
+  justify-content: center;
   position: absolute;
   z-index: 999;
   background:linear-gradient(to top, #86377b 20%, #27273c 80%);
   overflow: scroll;
+  color: white;
 
+}
+
+.info-container {
+  display: flex;
+  color: white;
+}
+
+.heading {
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-family: 'Calibri';
 }
 
 @keyframes move_wave {
