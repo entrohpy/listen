@@ -1,2 +1,4 @@
 # anteater-fullstack
-frontend for AntEater (real name TBA)
+frontend for Listen
+
+**Built for HackUCI 2019 | Won Best Overall Hack**
